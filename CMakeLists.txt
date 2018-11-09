@@ -3,5 +3,5 @@ project(Lab7)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Lab7 main.cpp)
-set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
+add_executable(Lab7 main.cpp Course.cpp Course.hpp)
+set(CMAKE_CXX_FLAsGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
