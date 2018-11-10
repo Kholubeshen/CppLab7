@@ -15,19 +15,43 @@ using namespace std;
  * print schedule - outputs course schedule to the screen
  * @param - add any new parameters you need
  */
-void printSchedule()
-{
-    //TODO implement your print using the copy algorithm, 2 iterators, and an ostream_iterator
-}
+void checkConflict(vector<Course> courses);
+void readFile(vector<Course> &courses);
+void printSchedule(vector<Course> courses);
+
+
 
 int main () {
-    //TODO read from courses.txt
-    //TODO store data in an STL container
-    //TODO sort your STL container with the sort algorithm
-    //TODO implement code to determine schedule conflicts
-    //TODO print out schedule conflicts
-    //TODO print out schedule
-    cout << "Find the TODOs in the code and implement them." << endl;
-    cout << "Add/modify any functions/code you need to complete your task." << endl;
+    vector<Course> courses;
+    readFile(courses);
+    sort(courses.begin(),courses.end());
+    checkConflict(courses);
+    printSchedule(courses);
+
     return 0;
+}
+
+void printSchedule(vector<Course> courses) {
+    copy(courses.begin(), courses.end(), ostream_iterator<Course>(cout));
+}
+
+void readFile(vector<Course>  &courses){
+    ifstream f;
+    f.open("../courses.txt");
+    Course c;
+    while(f >> c){
+        courses.push_back(c);
+    }
+}
+
+void checkConflict(vector<Course> courses) {
+    for (int i = 0; i < courses.size(); ++i) {
+        for (int j = i + 1; j < courses.size(); ++j) {
+            if(courses[i] != (courses[j])){
+                cout << "CONFLICT: " << endl;
+                cout << courses[i];
+                cout << courses[j] << endl;
+            }
+        }
+    }
 }
